@@ -2,10 +2,10 @@ import { Entity, Column } from 'typeorm';
 import { BaseEntity } from './base.entity';
 @Entity()
 export class User extends BaseEntity {
-  @Column()
+  @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: false })
   password: string;
 
   @Column()
