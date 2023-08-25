@@ -15,4 +15,4 @@ volumes:
   db:
     driver: local
 
-# docker exec -it name container  psql -U postgres doctolib bash
+# docker exec -it  clone-doctolib-backend_db_1  psql -U postgres doctolib bash
