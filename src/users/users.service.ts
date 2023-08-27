@@ -11,6 +11,8 @@ export class UsersService {
   ) {}
 
   async create(user: User): Promise<User> {
+    user.createdBy = 'SYSTEM';
+    user.lastChangedBy = 'SYSTEM';
     return await this.usersRepository.save(user);
   }
   async findOne(email: string): Promise<User | undefined> {
