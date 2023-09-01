@@ -1,5 +1,6 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToMany, JoinTable } from 'typeorm';
 import { BaseEntity } from './base.entity';
+import { Role } from './role.entity';
 @Entity()
 export class User extends BaseEntity {
   @Column({ unique: true })
@@ -16,4 +17,8 @@ export class User extends BaseEntity {
 
   @Column({ type: 'timestamptz' })
   dateOfBirth: Date;
+
+  @ManyToMany(() => Role, (role) => role.users)
+  @JoinTable()
+  roles: Role[];
 }

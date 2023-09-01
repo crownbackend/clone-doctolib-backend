@@ -1,5 +1,14 @@
-import { IsNotEmpty, IsString, IsEmail, IsDate } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsEmail,
+  IsDateString,
+  ValidateNested,
+} from 'class-validator';
 import { BaseDto } from '../../entity/dto/base.dto';
+import { Role } from '../../entity/role.entity';
+import { Type } from 'class-transformer';
+import { RoleDto } from './role.dto';
 
 export class CreateUserDto extends BaseDto {
   @IsEmail()
@@ -20,6 +29,10 @@ export class CreateUserDto extends BaseDto {
   lastName: string;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   dateOfBirth: Date;
+
+  @ValidateNested({ each: true })
+  @Type(() => RoleDto)
+  roles: Role[];
 }
