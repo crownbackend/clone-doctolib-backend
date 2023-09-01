@@ -36,6 +36,23 @@ export class UsersService {
     });
   }
 
+  async userHasRole(userId: string, roles: string[]): Promise<boolean> {
+    const user = await this.usersRepository.findOne({
+      where: {
+        id: userId,
+      },
+      relations: ['roles'],
+    });
+
+    if (!user) {
+      return false;
+    }
+
+    return roles.some((roleName) =>
+      user.roles.some((role) => role.name === roleName),
+    );
+  }
+
   async findAll(): Promise<User[]> {
     // await this.usersRepository.delete({
     //   id: 'e8a8ac1c-41cd-4220-994a-2e95faecae94'
