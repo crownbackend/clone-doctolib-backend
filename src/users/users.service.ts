@@ -33,6 +33,15 @@ export class UsersService {
       where: {
         email: email,
       },
+      select: {
+        roles: {
+            name: true,
+            description: true,
+        }
+      },
+      relations: {
+        roles: true,
+      }
     });
   }
 
@@ -58,8 +67,8 @@ export class UsersService {
     //   id: 'e8a8ac1c-41cd-4220-994a-2e95faecae94'
     // })
     /*const role = new Role();
-    role.name = 'doctor';
-    role.description = 'Docteur';
+    role.name = 'admin';
+    role.description = 'Admin role';
     role.createdBy = 'SYSTEM';
     role.lastChangedBy = 'SYSTEM';
     await this.roleRepository.save(role);*/
