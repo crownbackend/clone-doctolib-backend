@@ -31,14 +31,14 @@ export class UsersService {
     });
   }
 
-  async createDoctor(user: User): Promise<User> {
-    user.createdBy = 'SYSTEM';
-    user.lastChangedBy = 'SYSTEM';
-    const salt = bcrypt.genSaltSync(10);
-    user.password = await bcrypt.hash(user.password, salt);
-    const newRole = await this.findRoleByName('doctor');
-    user.roles = [newRole];
-  }
+  // async createDoctor(user: User): Promise<User> {
+  //   user.createdBy = 'SYSTEM';
+  //   user.lastChangedBy = 'SYSTEM';
+  //   const salt = bcrypt.genSaltSync(10);
+  //   user.password = await bcrypt.hash(user.password, salt);
+  //   const newRole = await this.findRoleByName('doctor');
+  //   user.roles = [newRole];
+  // }
   async findOne(email: string): Promise<User | undefined> {
     return await this.usersRepository.findOne({
       where: {
