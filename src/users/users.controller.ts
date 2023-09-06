@@ -12,6 +12,11 @@ export class UsersController {
   async register(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.create(createUserDto);
   }
+  @Post('register/doctor')
+  async registerDoctor(@Body() createUserDto: CreateUserDto) {
+    return await this.usersService.createDoctor(createUserDto);
+  }
+
   @Get('/all')
   async findAll() {
     return await this.usersService.findAll();
