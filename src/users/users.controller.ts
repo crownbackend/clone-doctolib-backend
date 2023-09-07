@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import {CreateUserDoctorDto} from "./dto/create-user-doctor.dto";
 //import { Roles } from './decorator/roles.decorator';
 //import { RolesGuard } from './guard/roles.guard';
 
@@ -13,10 +14,10 @@ export class UsersController {
     console.log(createUserDto)
     return await this.usersService.create(createUserDto);
   }
-  // @Post('register/doctor')
-  // async registerDoctor(@Body() createUserDto: CreateUserDto) {
-  //   return await this.usersService.createDoctor(createUserDto);
-  // }
+  @Post('register-doctor')
+  async registerDoctor(@Body() CreateUserDoctorDto: CreateUserDoctorDto) {
+    return await this.usersService.createDoctor(CreateUserDoctorDto);
+  }
 
   @Get('/all')
   async findAll() {
