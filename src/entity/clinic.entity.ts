@@ -1,6 +1,7 @@
 import { Entity, Column, OneToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Image } from './image.entity';
+import { Price } from './price.entity';
 
 @Entity()
 export class Clinic extends BaseEntity {
@@ -31,8 +32,8 @@ export class Clinic extends BaseEntity {
   @Column({ type: 'text' })
   ratesAndReimbursement: string;
 
-  @Column({ type: 'float' })
-  price: number;
+  @OneToMany(() => Price, (price) => price.clinic)
+  prices: number;
 
   @OneToMany(() => Image, (image) => image.clinic)
   images: Image[];
