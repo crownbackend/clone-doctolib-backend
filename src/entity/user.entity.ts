@@ -1,6 +1,7 @@
-import { Entity, Column, ManyToMany, JoinTable } from 'typeorm';
+import {Entity, Column, ManyToMany, JoinTable, OneToMany} from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Role } from './role.entity';
+import {Clinic} from "./clinic.entity";
 @Entity()
 export class User extends BaseEntity {
   @Column({ unique: true })
@@ -21,4 +22,7 @@ export class User extends BaseEntity {
   @ManyToMany(() => Role, (role) => role.users)
   @JoinTable()
   roles: Role[];
+
+  @OneToMany(() => Clinic, (clinic) => clinic.users)
+  clinic: Clinic[];
 }

@@ -9,6 +9,8 @@ import { BaseDto } from '../../entity/dto/base.dto';
 import { Role } from '../../entity/role.entity';
 import { Type } from 'class-transformer';
 import { RoleDto } from './role.dto';
+import {ClinicDto} from "./clinic.dto";
+import {Clinic} from "../../entity/clinic.entity";
 
 export class CreateUserDto extends BaseDto {
   @IsEmail()
@@ -35,4 +37,8 @@ export class CreateUserDto extends BaseDto {
   @ValidateNested({ each: true })
   @Type(() => RoleDto)
   roles: Role[];
+
+  @ValidateNested({ each: true })
+  @Type(() => ClinicDto)
+  clinic: Clinic[];
 }

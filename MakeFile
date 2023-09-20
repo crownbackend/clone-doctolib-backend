@@ -1,0 +1,5 @@
+up:
+	docker-compose up -d
+
+bdd:
+	docker exec -it  backend_db_1  psql -U postgres doctolib bash

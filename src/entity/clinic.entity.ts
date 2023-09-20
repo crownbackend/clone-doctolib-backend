@@ -1,7 +1,8 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import {Entity, Column, OneToMany, ManyToOne} from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { Image } from './image.entity';
 import { Price } from './price.entity';
+import {User} from "./user.entity";
 
 @Entity()
 export class Clinic extends BaseEntity {
@@ -37,4 +38,7 @@ export class Clinic extends BaseEntity {
 
   @OneToMany(() => Image, (image) => image.clinic)
   images: Image[];
+
+  @ManyToOne(() => User, (user: User) => user.clinic)
+  users: User;
 }

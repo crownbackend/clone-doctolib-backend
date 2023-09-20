@@ -38,6 +38,7 @@ export class UsersService {
     user.password = await bcrypt.hash(user.password, salt);
     const newRole = await this.findRoleByName('doctor');
     user.roles = [newRole];
+    console.log(user.clinic)
     return await this.usersRepository.save(user).catch((error) => {
       if (/(email)[\s\S]+(already exists)/.test(error.detail)) {
         throw new BadRequestException(
